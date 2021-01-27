@@ -49,8 +49,8 @@ view model =
         (Element.column
             [ Element.centerX
             , Element.alignTop
-            , Element.spacing 10
             , Element.width Element.fill
+            , Element.height Element.fill
             , Background.color white
             ]
             [ Element.el
@@ -68,13 +68,12 @@ view model =
             , Element.wrappedRow
                 [ Element.width Element.fill
                 , Element.height Element.fill
-                , Element.spacing 10
+                , Element.spacing 0
                 , Border.solid
                 , Border.color grey
                 ]
                 [ Element.column
                     [ Element.padding 10
-                    , Element.spacing 10
                     , Element.alignTop
                     , Element.height Element.fill
                     , Border.width 1
@@ -92,7 +91,6 @@ view model =
                     [ Element.width Element.fill
                     , Element.height Element.fill
                     , Element.padding 10
-                    , Border.width 1
                     , Border.color (Element.rgb255 177 177 177)
                     , Background.color white
                     ]
