@@ -1,8 +1,11 @@
 module Main exposing (..)
 
 import Browser
+import Colors.Opaque exposing (..)
 import Element
-import Element.Border
+import Element.Background as Background
+import Element.Border as Border
+import Element.Font as Font
 import Html exposing (Html)
 
 
@@ -45,38 +48,57 @@ view model =
     Element.layout []
         (Element.column
             [ Element.centerX
-            , Element.centerY
+            , Element.alignTop
             , Element.spacing 10
-            , Element.width (Element.px 1080)
+            , Element.width Element.fill
+            , Background.color white
             ]
             [ Element.el
                 [ Element.width Element.fill
                 , Element.padding 10
-                , Element.Border.width 1
+                , Font.color white
+                , Font.family
+                    [ Font.typeface "Open Sans"
+                    , Font.sansSerif
+                    ]
+                , Font.size 16
+                , Background.color black
                 ]
                 (Element.text "Stream Engine Studios")
-            , Element.row
+            , Element.wrappedRow
                 [ Element.width Element.fill
+                , Element.height Element.fill
                 , Element.spacing 10
-                , Element.Border.solid
-                , Element.Border.color (Element.rgb255 0 0 0)
+                , Border.solid
+                , Border.color grey
                 ]
                 [ Element.column
                     [ Element.padding 10
                     , Element.spacing 10
-                    , Element.Border.width 1
+                    , Element.alignTop
+                    , Element.height Element.fill
+                    , Border.width 1
+                    , Border.color (Element.rgb255 177 177 177)
+                    , Background.color (Element.rgba 0.7 0.7 0.7 0.5)
+                    , Font.size 14
                     ]
                     [ Element.text "Home"
                     , Element.text "About"
                     , Element.text "Contact"
+                    , Element.text "Lorem"
+                    , Element.text "Ipsum"
                     ]
                 , Element.el
                     [ Element.width Element.fill
                     , Element.height Element.fill
                     , Element.padding 10
-                    , Element.Border.width 1
+                    , Border.width 1
+                    , Border.color (Element.rgb255 177 177 177)
+                    , Background.color white
                     ]
-                    Element.none
+                    (Element.paragraph []
+                        [ Element.text "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." ]
+                    )
                 ]
             ]
         )
