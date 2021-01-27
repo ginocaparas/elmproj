@@ -5181,19 +5181,41 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$document = _Browser_document;
-var $elm$core$Platform$Cmd$batch = _Platform_batch;
-var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
+var $author$project$Main$ViewportReceived = function (a) {
+	return {$: 'ViewportReceived', a: a};
+};
+var $elm$browser$Browser$Dom$getViewport = _Browser_withWindow(_Browser_getViewport);
 var $author$project$Main$init = function (flags) {
 	return _Utils_Tuple2(
-		{},
-		$elm$core$Platform$Cmd$none);
+		{width: 0},
+		A2(
+			$elm$core$Task$perform,
+			$author$project$Main$ViewportReceived,
+			A2(
+				$elm$core$Task$andThen,
+				function (viewport) {
+					return $elm$core$Task$succeed(
+						{height: viewport.viewport.height, width: viewport.viewport.width});
+				},
+				$elm$browser$Browser$Dom$getViewport)));
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
 var $elm$json$Json$Decode$string = _Json_decodeString;
+var $elm$core$Platform$Cmd$batch = _Platform_batch;
+var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$update = F2(
 	function (msg, model) {
-		return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+		if (msg.$ === 'ViewportReceived') {
+			var viewport = msg.a;
+			return _Utils_Tuple2(
+				_Utils_update(
+					model,
+					{width: viewport.width}),
+				$elm$core$Platform$Cmd$none);
+		} else {
+			return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+		}
 	});
 var $mdgriffith$elm_ui$Internal$Model$AlignY = function (a) {
 	return {$: 'AlignY', a: a};

@@ -1,12 +1,14 @@
 module Main exposing (..)
 
 import Browser
+import Browser.Dom
 import Colors.Opaque exposing (..)
 import Element
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Html exposing (Html)
+import Task
 
 
 
@@ -15,7 +17,10 @@ import Html exposing (Html)
 
 init : String -> ( Model, Cmd Msg )
 init flags =
-    ( {}, Cmd.none )
+    ( { width = 0
+      }
+    , Task.perform ViewportReceived (Task.andThen (\viewport -> Task.succeed { width = viewport.viewport.width, height = viewport.viewport.height }) Browser.Dom.getViewport)
+    )
 
 
 
@@ -23,7 +28,8 @@ init flags =
 
 
 type alias Model =
-    {}
+    { width : Float
+    }
 
 
 
@@ -95,12 +101,16 @@ view model =
 
 
 type Msg
-    = NoOp
+    = ViewportReceived { height : Float, width : Float }
+    | NoOp
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        ViewportReceived viewport ->
+            ( { model | width = viewport.width }, Cmd.none )
+
         NoOp ->
             ( model, Cmd.none )
 
