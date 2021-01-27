@@ -19,7 +19,12 @@ init : String -> ( Model, Cmd Msg )
 init flags =
     ( { width = 0
       }
-    , Task.perform ViewportReceived (Task.andThen (\viewport -> Task.succeed { width = viewport.viewport.width, height = viewport.viewport.height }) Browser.Dom.getViewport)
+    , -- https://package.elm-lang.org/packages/elm/browser/latest/Browser.Dom
+      Task.perform ViewportReceived
+        (Task.andThen
+            (\viewport -> Task.succeed { width = viewport.viewport.width, height = viewport.viewport.height })
+            Browser.Dom.getViewport
+        )
     )
 
 
@@ -67,6 +72,7 @@ view model =
                     [ Element.column
                         [ Element.padding 10
                         , Element.alignTop
+                        , Element.width (Element.px (floor (model.width * 0.2))) -- `Element.width` needs an Int, so we need to convert Float to Int using `floor`
                         , Element.height Element.fill
                         , Border.width 1
                         , Border.color (Element.rgb255 177 177 177)

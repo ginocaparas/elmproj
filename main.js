@@ -11278,6 +11278,10 @@ var $mdgriffith$elm_ui$Element$paragraph = F2(
 						attrs))),
 			$mdgriffith$elm_ui$Internal$Model$Unkeyed(children));
 	});
+var $mdgriffith$elm_ui$Internal$Model$Px = function (a) {
+	return {$: 'Px', a: a};
+};
+var $mdgriffith$elm_ui$Element$px = $mdgriffith$elm_ui$Internal$Model$Px;
 var $mdgriffith$elm_ui$Element$rgba = $mdgriffith$elm_ui$Internal$Model$Rgba;
 var $mdgriffith$elm_ui$Element$Font$sansSerif = $mdgriffith$elm_ui$Internal$Model$SansSerif;
 var $mdgriffith$elm_ui$Element$Font$size = function (i) {
@@ -11562,6 +11566,9 @@ var $author$project$Main$view = function (model) {
 										[
 											$mdgriffith$elm_ui$Element$padding(10),
 											$mdgriffith$elm_ui$Element$alignTop,
+											$mdgriffith$elm_ui$Element$width(
+											$mdgriffith$elm_ui$Element$px(
+												$elm$core$Basics$floor(model.width * 0.2))),
 											$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
 											$mdgriffith$elm_ui$Element$Border$width(1),
 											$mdgriffith$elm_ui$Element$Border$color(
