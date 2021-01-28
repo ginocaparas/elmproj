@@ -2,6 +2,7 @@ module Main exposing (..)
 
 import Browser
 import Browser.Dom
+import Browser.Events
 import Colors.Opaque exposing (..)
 import Element
 import Element.Background as Background
@@ -122,6 +123,15 @@ update msg model =
 
 
 
+-- SUBSCRIPTIONS
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Browser.Events.onResize (\w h -> ViewportReceived { width = toFloat w, height = toFloat h })
+
+
+
 -- MAIN
 
 
@@ -131,5 +141,5 @@ main =
         { init = init
         , view = view
         , update = update
-        , subscriptions = \_ -> Sub.none
+        , subscriptions = subscriptions
         }
